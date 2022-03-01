@@ -1,6 +1,8 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import 'rsuite/dist/rsuite.min.css';
+import "./styles/main.scss"
 
 function App() {
   return (
