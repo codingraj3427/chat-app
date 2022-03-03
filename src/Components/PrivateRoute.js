@@ -1,8 +1,8 @@
 import React from 'react'
-import { Redirect } from 'react-router-dom';
-import { Route } from 'react-router-dom';
+import { Redirect } from 'react-router';
+import { Route } from 'react-router';
 
-const PrivateRoute = (children, ...routeProps) => {
+const PrivateRoute = ({children, ...routeProps}) => {
 
   const profile =false;
 
@@ -18,4 +18,4 @@ const PrivateRoute = (children, ...routeProps) => {
   )
 }
 
-export default PrivateRoute
+export default PrivateRoute;

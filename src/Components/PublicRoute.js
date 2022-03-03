@@ -1,8 +1,8 @@
 import React from 'react'
-import { Redirect } from 'react-router-dom';
-import { Route } from 'react-router-dom';
+import { Redirect } from 'react-router';
+import { Route } from 'react-router';
 
-const PublicRoute = (children, ...routeProps) => {
+const PublicRoute = ({children, ...routeProps}) => {
 
   const profile = false;
 
