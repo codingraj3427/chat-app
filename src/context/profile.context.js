@@ -1,64 +1,72 @@
 import React,{ createContext, useContext, useEffect, useState } from "react"
-import { auth,database } from "../misc/firebase";
+import { auth,database} from "../misc/firebase";
 
 const ProfileContext=createContext();
 
 export const ProfileProvider=({children})=>
 {
   const[Profile,setProfile]=useState(null);
-  const[isLoading,setIsLoading]=useState(true );
+  const[isLoading,setisLoading]=useState(true);
+
   useEffect(()=>
-
   {
-
-    let userRef;
-     const authUnsub=auth.onAuthStateChanged(authObj=>
+     let useref;
+     
+   const authUnsub= auth.onAuthStateChanged(authObj=>
       {
         if(authObj)
-        {
-           userRef= database.ref(`/profile/${authObj.uid}`)
-          userRef.on('value',(snap)=>
-          {  
-           
-            const {name,createdAt}=snap.value();
-            const data={
-              name,
-              createdAt,
-              uid:authObj.uid,
-              email:authObj.email
-            };
-            setProfile(data)
-            setIsLoading(false);
-          });
-        
 
+        {    
+             
+          useref=database.ref(`/profiles/${authObj.uid}`)
+
+            useref.on('value',(snap)=>{
+              const {name,createdAt}=snap.val();
+              const data={
+                name,
+                createdAt,
+                uid:authObj.uid,
+                email:authObj.email
+    
+              };
+              
+              setProfile(data ); 
+              setisLoading(false);
+
+            });
+
+         
+          
         }
+
+
         else
         {
-
-          if(userRef)
+          if(useref)
           {
-            userRef.off()
+            useref.off();
           }
-          setProfile(null)
-          setIsLoading(false)
+
+            setProfile(null);
+            setisLoading(false);
         }
-      })
+      });
       return ()=>
-      {
-        authUnsub();
-        if(userRef)
+      { 
+        if(useref)
         {
-          userRef.off();
+          useref.off();
         }
+        authUnsub();
       }
-  },[])
+  },[]);
+    
   return(
 
-    <ProfileContext.Provider value={{Profile,isLoading}}>
+    <ProfileContext.Provider value={{isLoading,Profile}}>
    {children}
   </ProfileContext.Provider>
 ); 
 };
 
-export const Useprofile=()=>useContext(ProfileContext);   
+export const UseProfile=()=>useContext(ProfileContext);   

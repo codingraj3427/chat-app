@@ -15,7 +15,9 @@ function App() {
     <Switch>
 
       <PublicRoute path="/signin">
+        
         <SignIn/>
+
       </PublicRoute>
 
       <PrivateRoute path="/">
@@ -23,6 +25,7 @@ function App() {
       </PrivateRoute>
 
     </Switch>
+  
     </ProfileProvider>
   );
 }
