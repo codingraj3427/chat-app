@@ -5,32 +5,34 @@ const ProfileContext=createContext();
 
 export const ProfileProvider=({children})=>
 {
-  const[Profile,setProfile]=useState(null);
+  const[profile,setProfile]=useState(null);
   const[isLoading,setisLoading]=useState(true);
 
   useEffect(()=>
   {
-     let useref;
+     let userRef;
      
-   const authUnsub= auth.onAuthStateChanged(authObj=>
+   const authUnsub= auth.onAuthStateChanged(authObj =>
       {
         if(authObj)
 
         {    
              
-          useref=database.ref(`/profiles/${authObj.uid}`)
+          userRef=database.ref(`/profiles/${authObj.uid}`);
 
-            useref.on('value',(snap)=>{
+            userRef.on('value', snap=>{
               const {name,createdAt}=snap.val();
-              const data={
+              const data ={
+
                 name,
                 createdAt,
                 uid:authObj.uid,
                 email:authObj.email
     
               };
+             
               
-              setProfile(data ); 
+              setProfile(data); 
               setisLoading(false);
 
             });
@@ -42,9 +44,9 @@ export const ProfileProvider=({children})=>
 
         else
         {
-          if(useref)
+          if(userRef)
           {
-            useref.off();
+            userRef.off();
           }
 
             setProfile(null);
@@ -53,9 +55,9 @@ export const ProfileProvider=({children})=>
       });
       return ()=>
       { 
-        if(useref)
+        if(userRef)
         {
-          useref.off();
+          userRef.off();
         }
         authUnsub();
       }
@@ -63,10 +65,10 @@ export const ProfileProvider=({children})=>
     
   return(
 
-    <ProfileContext.Provider value={{isLoading,Profile}}>
+    <ProfileContext.Provider value={{profile,isLoading}}>
    {children}
   </ProfileContext.Provider>
 ); 
 };
 
-export const UseProfile=()=>useContext(ProfileContext);   
+export const useProfile= ()=>useContext(ProfileContext);   

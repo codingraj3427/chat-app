@@ -1,13 +1,13 @@
 import React from 'react'
 import { Redirect } from 'react-router';
 import { Route } from 'react-router';
-import { UseProfile } from '../context/profile.context';
 import {Container,Loader} from 'rsuite';
+import { useProfile } from '../context/profile.context';
 
 
 const PublicRoute = ({children, ...routeProps}) => {
 
-  const {profile,isLoading}=UseProfile();
+  const {profile,isLoading}=useProfile();
 
   if(isLoading && !profile)
   {
@@ -15,14 +15,14 @@ const PublicRoute = ({children, ...routeProps}) => {
       <Container>
       <Loader center vertical size="md" content='loading' speed='slow'/>
       </Container>
-    )
+    );
   }
    
 
 
   if(profile && !isLoading)
   {
-    return <Redirect to="/"/>
+    return <Redirect to="/" />;
   }
 
   return (
@@ -30,6 +30,6 @@ const PublicRoute = ({children, ...routeProps}) => {
       {children}
     </Route>
   )
-}
+};
 
 export default PublicRoute;
