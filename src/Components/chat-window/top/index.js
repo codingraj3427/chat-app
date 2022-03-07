@@ -15,7 +15,7 @@ const Top = () => {
     <div>
     <div className="d-flex justify-content-between align-items-center">
 
-<h4 className="text-disappear d-flex align-items-center">
+<h4>
 
   <Icon
 
@@ -45,7 +45,7 @@ const Top = () => {
 
 
 
-<ButtonToolbar className="white-space:no-wrap">todo</ButtonToolbar>
+<ButtonToolbar className="white-space:nowrap">todo</ButtonToolbar>
 
 </div>
 

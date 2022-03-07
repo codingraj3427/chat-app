@@ -23,7 +23,7 @@ const ChatRoomList = ({aboveElHeight}) => {
     }}
     activeKey={location.pathname}
     >
-      {!rooms && <Loader center vertical content="Loading" speed="slow" size="md "/>}
+      {!rooms && <Loader center vertical content="Loading" speed="slow" size="md"/>}
        {rooms && rooms.length>0 && rooms.map(room=>(
 
          <Nav.Item 
@@ -33,6 +33,7 @@ const ChatRoomList = ({aboveElHeight}) => {
          >
           
          <RoomItem room={room}/>
+        
          </Nav.Item>
 
        ))}

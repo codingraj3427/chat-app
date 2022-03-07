@@ -34,6 +34,8 @@ const Bottom = () => {
   },[])
 
 
+
+
   const onSendClick= async () =>
   {
     if(input.trim()==='')
@@ -42,7 +44,7 @@ const Bottom = () => {
     }
 
     const msgData= assembleMessage(profile,chatId);
-    
+
     msgData.text=input;
 
     const updates={};
@@ -71,19 +73,39 @@ const Bottom = () => {
 
      
   }; 
+
+  
+  const onKeyDown=(ev)=>
+
+  {
+       if(ev.keyCode===13)
+       {
+         ev.preventDefault();
+         onSendClick();
+       }    
+  }
   return (
     <div>
+
+      
       <InputGroup>
-        <Input placeholder="Write a new Message here..."value={input} onChange={onInputChange}/>
+        
+        <Input 
+        placeholder="Write a new Message here..."
+        value={input} 
+        onChange={onInputChange}
+        onKeyDown={onKeyDown}
+        />
         <InputGroup.Button 
         color="blue" 
         appearance="primary" 
         onClick={onSendClick}
         disabled={isLoading}
         >
-          <Icon icon="send"/>           
+        <Icon icon="send"/>           
         </InputGroup.Button>
-      </InputGroup>
+      </InputGroup>'
+      
     </div>
   );
 };
