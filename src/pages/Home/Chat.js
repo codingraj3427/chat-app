@@ -39,18 +39,18 @@ const Chat = () => {
   
   return (
     <CurrentRoomProvider data={currentRoomData}>
-        <div>
-          <ChatTop chat-top/>
+        <div className='chat-top'>
+          <ChatTop/>
           </div> 
 
 
-          <div>
-            <Messages chat-middle/>
+          <div className='chat-middle'>
+            <Messages/>
           </div>
 
 
-          <div>
-            <ChatBottom chat-bottom/>
+          <div className='chat-bottom'>
+            <ChatBottom/>
           </div>
     </CurrentRoomProvider>
   )

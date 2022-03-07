@@ -104,7 +104,7 @@ const Bottom = () => {
         >
         <Icon icon="send"/>           
         </InputGroup.Button>
-      </InputGroup>'
+      </InputGroup>
       
     </div>
   );
