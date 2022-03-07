@@ -91,12 +91,18 @@ export const ProfileProvider=({children})=>
             userStatusRef.off();
           }
 
+          database.ref('.info/connected').off();
+
+
+
             setProfile(null);
             setisLoading(false);
         }
       });
       return ()=>
       { 
+        database.ref('.info/connected').off();
+        
         if(userRef)
         {
           userRef.off();
