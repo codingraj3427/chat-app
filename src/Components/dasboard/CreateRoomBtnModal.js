@@ -84,7 +84,7 @@ const CreateRoomBtnModal = () => {
           <Form fluid 
           onChange={onFormChange} 
           formValue={formValue} 
-          Modal={model}
+          model={model}
           ref={formRef}
           >
             <FormGroup>

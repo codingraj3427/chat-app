@@ -5,6 +5,7 @@ import Messages from '../../Components/chat-window/messages';
 import { useParams } from 'react-router';
 import { Loader } from 'rsuite';
 import { useRooms } from '../../context/rooms.context';
+import { CurrentRoomProvider } from '../../context/current-room.context';
 
 const Chat = () => {
 
@@ -22,8 +23,22 @@ const Chat = () => {
   {
     return <h6 className='text-center mt-page'>Chat { chatId} not found </h6>
   }
+
+
+  const {name,description}=currentRoom; 
+
+
+
+  const currentRoomData= 
+  {
+    name,
+    description
+    
+  };
+
+  
   return (
-    <div>
+    <CurrentRoomProvider data={currentRoomData}>
         <div>
           <ChatTop chat-top/>
           </div> 
@@ -37,7 +52,7 @@ const Chat = () => {
           <div>
             <ChatBottom chat-bottom/>
           </div>
-    </div>
+    </CurrentRoomProvider>
   )
 }
 
