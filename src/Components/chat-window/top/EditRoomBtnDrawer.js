@@ -2,11 +2,10 @@ import React, { memo } from 'react';
 import { Button, Drawer, Alert } from 'rsuite';
 import { useParams } from 'react-router';
 
-
-import EditableInput from '../../dashboard/EditableInput';
-import { useCurrentRoom } from '../../../context/current-room.context';
 import { database } from '../../../misc/firebase';
-import { useMediaQuery, useModalState } from '../../../misc/Custom-hooks';
+import { useMediaQuery, useModalState } from '../../../misc/custom-hooks';
+import { useCurrentRoom } from '../../../context/current-room.context';
+import EditableInput from '../../EditableInput';
 
 
 const EditRoomBtnDrawer = () => {

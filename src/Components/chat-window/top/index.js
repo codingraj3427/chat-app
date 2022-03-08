@@ -3,13 +3,14 @@ import { Link } from 'react-router-dom';
 import {ButtonToolbar, Icon} from 'rsuite';
 import { useCurrentRoom } from '../../../context/current-room.context';
 import { useMediaQuery } from '../../../misc/custom-hooks';
+import EditRoomBtnDrawer from './EditRoomBtnDrawer';
 import RoominfoBtnModal from './RoominfoBtnModal';
 
 
 const Top = () => {
 
   const name= useCurrentRoom(v=> v.name);  
-
+  const isAdmin=useCurrentRoom(v=> v.isAdmin);
   const isMobile= useMediaQuery('(max-width:992px)')
   return (
     <div>
@@ -45,7 +46,12 @@ const Top = () => {
 
 
 
-<ButtonToolbar className="white-space:nowrap">todo</ButtonToolbar>
+<ButtonToolbar className="white-space:nowrap">
+    {isAdmin &&
+    <EditRoomBtnDrawer/> 
+    }
+  </ButtonToolbar>
+    
 
 </div>
 

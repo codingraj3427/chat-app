@@ -6,6 +6,8 @@ import { useParams } from 'react-router';
 import { Loader } from 'rsuite';
 import { useRooms } from '../../context/rooms.context';
 import { CurrentRoomProvider } from '../../context/current-room.context';
+import { transformToArr } from '../../misc/helper';
+import { auth } from '../../misc/firebase';
 
 const Chat = () => {
 
@@ -27,12 +29,17 @@ const Chat = () => {
 
   const {name,description}=currentRoom; 
 
+  const admins=transformToArr(currentRoom.admins);
+  const isAdmin= admins.includes(auth.currentUser.uid);
+
 
 
   const currentRoomData= 
   {
     name,
-    description
+    description,
+    admins,
+    isAdmin,
     
   };
 
