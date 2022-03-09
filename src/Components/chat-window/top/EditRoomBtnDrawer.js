@@ -21,7 +21,7 @@ const EditRoomBtnDrawer = () => {
   const updateData = (key, value) => {
     database
       .ref(`rooms/${chatId}`)
-      .child(key)
+      .child(key) 
       .set(value)
       .then(() => {
         Alert.success('Successfully updated', 4000);
